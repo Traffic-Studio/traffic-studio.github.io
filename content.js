@@ -7,9 +7,9 @@ window.TRAFFIC_CONTENT =
     "tagline": "More models · fewer assumptions · Reality still not included",
     "discussion": "https://github.com/Traffic-Studio/Discussion",
     "discussionRepo": "Traffic-Studio/Discussion",
-    "discussionRepoId": "R_kgDOUOt0pQ",
+    "discussionRepoId": "R_kgDOUZEuvg",
     "discussionCategory": "General",
-    "discussionCategoryId": "DIC_kwDOUOt0pc4DE5dZ",
+    "discussionCategoryId": "DIC_kwDOUZEuvs4DFgrV",
     "updated": "2026-10-04",
     "overviewEyebrow": "Maybe six applications",
     "overviewIntro": "A family of browser-based tools for traffic analysis. Because producing a result is easy. Deciding whether to believe it is the interesting part."
