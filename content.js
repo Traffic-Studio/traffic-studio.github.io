@@ -4,20 +4,20 @@ window.TRAFFIC_CONTENT =
 
   "site": {
     "title": "Traffic Studio",
-    "tagline": "Single-file HTML · runs offline",
+    "tagline": "More models · fewer assumptions · Reality still not included",
     "discussion": "https://github.com/Traffic-Studio/Discussion",
     "discussionRepo": "Traffic-Studio/Discussion",
     "discussionRepoId": "R_kgDOUOt0pQ",
     "discussionCategory": "General",
     "discussionCategoryId": "DIC_kwDOUOt0pc4DE5dZ",
-    "updated": "2026-09-21",
-    "overviewEyebrow": "Four applications",
-    "overviewIntro": "Placeholder. A family of browser-based tools for traffic analysis. Download one file, open it in a browser, keep the data on your machine."
+    "updated": "2026-10-04",
+    "overviewEyebrow": "Maybe six applications",
+    "overviewIntro": "A family of browser-based tools for traffic analysis. Because producing a result is easy. Deciding whether to believe it is the interesting part."
   },
 
   "news": [
-    { "date": "2026-09-21", "app": "", "title": "Placeholder. Site launched", "text": "Placeholder. One line describing the news item. Newest first." },
-    { "date": "2026-09-20", "app": "Intersection", "title": "Placeholder. Intersection Studio v0.0", "text": "Placeholder. An item tagged with an app's short name also shows on that app's page." }
+    { "date": "2026-10-04", "app": "", "title": "Site launched", "text": "Finally." },
+    { "date": "2026-10-04", "app": "Intersection", "title": "Intersection Studio v1.2", "text": "First public release." }
   ],
 
   "actions": ["Download", "Documentation", "Quick start", "FAQ", "Discussion", "Report a bug"],
@@ -27,8 +27,8 @@ window.TRAFFIC_CONTENT =
       "num": "01",
       "name": "Intersection Studio",
       "short": "Intersection",
-      "domain": "Geometry · Phasing · Capacity",
-      "description": "Placeholder. Signalised intersection geometry, phasing and capacity.",
+      "domain": "Visualization · Traffic flows · Results",
+      "description": "Visualize intersections, traffic flows, and results.",
       "version": "v0.0",
       "released": "—",
       "size": "— kB",
@@ -44,22 +44,20 @@ window.TRAFFIC_CONTENT =
         "Documentation": "",
         "Quick start": "",
         "FAQ": "",
-        "Discussion": "",
-        "Report a bug": ""
+        "Discussion": "https://github.com/Traffic-Studio/Discussion",
+        "Report a bug": "https://github.com/Traffic-Studio/Intersection-Studio/issues"
       },
-      "images": ["", ""],
-      "captions": ["Screenshot 1", "Screenshot 2"],
+      "images": ["images/IS-pic1.png", "images/IS-pic2.png", "images/IS-pic3.png", "images/IS-pic4.png", "images/IS-pic5.png", "images/IS-pic6.png"],
+      "captions": ["Roundabout", "Traffic signal", "Results", "Compare", "Traffic flows diagram", "Traffic flows"],
       "example": ["open in any browser", "data stays on your machine"],
       "quickStart": [
-        "Placeholder. Download the single HTML file.",
-        "Placeholder. Open it in a browser.",
-        "Placeholder. Load a sample dataset.",
-        "Placeholder. Export your results."
+        "Download the single HTML file.",
+        "Open it in a browser.",
+        "Create your favourite intersection.",
+        "Fill in with all information you have about it."
       ],
       "faq": [
-        { "q": "Placeholder question one?", "a": "Placeholder answer." },
-        { "q": "Placeholder question two?", "a": "Placeholder answer." },
-        { "q": "Placeholder question three?", "a": "Placeholder answer." }
+        { "q": "Is this thing working?", "a": "WYSIWYG" },
       ]
     }
   ]
