@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<script src="./content.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f4f2ec; --panel:#ffffff; --panel2:#faf9f4;
+    --border:#ebe6d9; --border2:#d9d4c7;
+    --ink:#1a1a1a; --ink-soft:#5a5a5a; --ink-faint:#9a9a9a; --muted:#8a8578;
+    --accent:#1f3b5b; --accent-soft:#e6ebf2; --accent-hover:#15293f; --on-accent:#ffffff;
+    --danger:#8b2a2a; --warn:#b3541e; --ok:#2e6b45;
+  }
+  body { margin:0; background:var(--bg); font-family:'IBM Plex Sans',sans-serif; color:var(--ink); }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { color:var(--accent-hover); }
+</style>
+</helmet>
+
+<div style="{{ themeVars }}">
+<div style="height:100vh; overflow:hidden; background:var(--bg); display:flex; flex-direction:column">
+
+  <div style="display:flex; align-items:baseline; justify-content:space-between; padding:13px 28px; background:var(--panel); border-bottom:1px solid var(--border2); flex:none">
+    <span onClick="{{ goHome }}" style="font-family:'IBM Plex Serif',Georgia,serif; font-size:17px; font-weight:500; letter-spacing:-.01em; color:var(--ink); cursor:pointer" style-hover="color:var(--accent)">{{ site.title }}</span>
+    <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ site.tagline }}</span>
+  </div>
+
+  <div style="display:grid; grid-template-columns:264px minmax(0,1fr) 240px; align-items:stretch; flex:1; min-height:0">
+    <div style="padding:24px 20px; border-right:1px solid var(--border); box-sizing:border-box; display:flex; flex-direction:column; overflow:auto">
+      <div style="display:flex; flex-direction:column">
+        <sc-for list="{{ menu }}" as="m" hint-placeholder-count="5">
+          <div onClick="{{ m.select }}" style="padding:11px 8px; border-top:1px solid var(--border); cursor:pointer; font-size:14px; color:{{ m.color }}; border-left:2px solid {{ m.rule }}" style-hover="color:var(--accent)">{{ m.label }}</div>
+        </sc-for>
+      </div>
+      <div style="margin-top:auto; display:flex; flex-direction:column; gap:8px; padding:0 8px">
+        <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">Theme</span>
+        <div style="display:flex; gap:6px">
+          <sc-for list="{{ themes }}" as="t" hint-placeholder-count="2">
+            <span onClick="{{ t.select }}" style="font-family:'Azeret Mono',monospace; font-size:11px; font-weight:{{ t.weight }}; letter-spacing:.04em; padding:4px 10px; border:1px solid {{ t.border }}; border-radius:4px; background:{{ t.bg }}; color:{{ t.fg }}; cursor:pointer" style-hover="border-color:var(--accent)">{{ t.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ loadError }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 40px; font-size:14px; line-height:1.6; color:var(--danger)">content.js could not be read. Usually a missing comma or quote — see HOW-TO-EDIT.md. Details in the browser console (F12).</div>
+    </sc-if>
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <div id="scroll" style="overflow:auto; min-height:0; box-sizing:border-box; padding:44px 40px 72px; display:flex; flex-direction:column; gap:32px">
+        <div style="display:flex; flex-direction:column; gap:32px; max-width:840px">
+        <div style="display:flex; flex-direction:column; gap:14px">
+          <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ site.overviewEyebrow }}</div>
+          <h1 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:52px; font-weight:400; letter-spacing:-.03em; line-height:1.02; color:var(--ink)">{{ site.title }}</h1>
+          <p style="margin:0; max-width:58ch; font-size:17px; line-height:1.55; color:var(--ink-soft); text-wrap:pretty">{{ site.overviewIntro }}</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px">
+          <sc-for list="{{ apps }}" as="app" hint-placeholder-count="4">
+            <div style="background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:16px; display:flex; flex-direction:column; gap:12px" style-hover="border-color:var(--accent)">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px">
+                <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ app.num }} · {{ app.domain }}</span>
+              </div>
+              <div onClick="{{ app.open }}" style="font-family:'IBM Plex Serif',Georgia,serif; font-size:22px; font-weight:500; letter-spacing:-.01em; line-height:1.15; color:var(--ink); cursor:pointer" style-hover="color:var(--accent)">{{ app.name }}</div>
+              <div style="font-size:14px; line-height:1.5; color:var(--ink-soft); text-wrap:pretty">{{ app.description }}</div>
+              <div style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--muted)">{{ app.version }} · released {{ app.released }}</div>
+              <div style="height:1px; background:var(--border)"></div>
+              <div style="display:flex; flex-wrap:wrap; gap:10px">
+                <sc-for list="{{ app.actionLinks }}" as="act" hint-placeholder-count="6">
+                  <a href="{{ act.href }}" target="{{ act.target }}" onClick="{{ act.go }}" title="{{ act.title }}" style="font-family:'Azeret Mono',monospace; font-size:11px; font-weight:{{ act.weight }}; letter-spacing:.04em; color:{{ act.color }}; opacity:{{ act.opacity }}; cursor:{{ act.cursor }}" style-hover="color:var(--accent)">{{ act.label }}</a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ hasNews }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap">
+            <h2 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:24px; font-weight:400; letter-spacing:-.01em; color:var(--ink)">News</h2>
+            <a href="{{ feedHref }}" download="news.json" title="Machine-readable copy of this list" style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--ink-soft); text-decoration:none" style-hover="color:var(--accent)">news.json ↓</a>
+          </div>
+          <div style="border:1px solid var(--border2); border-radius:4px; background:var(--panel); overflow:hidden">
+            <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+              <div style="display:grid; grid-template-columns:110px 1fr; gap:16px; padding:14px 18px; border-bottom:1px solid var(--border); font-size:14px; line-height:1.5">
+                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-start">
+                  <span style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--muted); padding-top:3px">{{ n.date }}</span>
+                  <span onClick="{{ n.open }}" style="font-family:'Azeret Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; padding:2px 6px; border:1px solid var(--border2); border-radius:3px; color:{{ n.tagColor }}; cursor:{{ n.tagCursor }}">{{ n.tag }}</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:2px">
+                  <span style="color:var(--ink); font-weight:500">{{ n.title }}</span>
+                  <span style="color:var(--ink-soft); text-wrap:pretty">{{ n.text }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ current }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; min-height:0">
+        <div style="flex:none; margin:28px 40px 0; max-width:840px; display:flex; border-bottom:1px solid var(--border2)">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="6">
+            <a href="{{ tab.href }}" target="{{ tab.target }}" onClick="{{ tab.go }}" title="{{ tab.title }}" style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; padding:12px 14px; margin-bottom:-1px; color:{{ tab.color }}; font-weight:{{ tab.weight }}; border-bottom:2px solid {{ tab.rule }}; opacity:{{ tab.opacity }}; cursor:{{ tab.cursor }}" style-hover="color:var(--accent)">{{ tab.label }}</a>
+          </sc-for>
+        </div>
+        <div id="scroll" style="flex:1; overflow:auto; min-height:0; padding:36px 40px 72px; box-sizing:border-box">
+        <div style="display:flex; flex-direction:column; gap:36px; max-width:840px">
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ current.num }} · {{ current.domain }}</div>
+          <h1 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:44px; font-weight:400; letter-spacing:-.02em; line-height:1.06; color:var(--ink)">{{ current.name }}</h1>
+          <p style="margin:0; max-width:60ch; font-size:16px; line-height:1.55; color:var(--ink-soft); text-wrap:pretty">{{ current.description }}</p>
+        </div>
+
+        <div id="release" style="display:flex; flex-direction:column; gap:10px">
+            <div style="background:var(--panel); border:1px solid var(--border2); border-radius:4px; overflow:hidden">
+              <div style="display:flex; align-items:baseline; justify-content:space-between; padding:12px 18px; border-bottom:1px dashed var(--border2)">
+                <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">Release ticket</span>
+                <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">No. {{ current.num }}</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px dashed var(--border2)">
+                <sc-for list="{{ ticket }}" as="t" hint-placeholder-count="4">
+                  <div style="padding:16px 18px; border-left:1px dashed var(--border2); display:flex; flex-direction:column; gap:6px">
+                    <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ t.k }}</span>
+                    <span style="font-family:'IBM Plex Serif',Georgia,serif; font-size:24px; letter-spacing:-.02em; line-height:1; color:var(--ink)">{{ t.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-if value="{{ hasChangelog }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:14px 18px; border-bottom:1px dashed var(--border2); display:flex; flex-direction:column; gap:8px">
+                  <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">What's new in {{ current.version }}</span>
+                  <div style="display:flex; flex-direction:column; gap:4px">
+                    <sc-for list="{{ changelog }}" as="ch" hint-placeholder-count="2">
+                      <div style="display:grid; grid-template-columns:12px 1fr; gap:8px; font-size:14px; line-height:1.5; color:var(--ink-soft)"><span style="color:var(--accent)">·</span><span>{{ ch }}</span></div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 18px; background:var(--panel2)">
+                <span style="font-family:'Azeret Mono',monospace; font-size:12px; color:var(--ink)">{{ current.file }}</span>
+                <a href="{{ downloadHref }}" download="{{ current.file }}" style="font-family:'Azeret Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.04em; padding:9px 16px; border:1px solid var(--accent); border-radius:4px; background:var(--accent); color:var(--on-accent)" style-hover="background:var(--accent-hover); border-color:var(--accent-hover)">Download</a>
+              </div>
+            </div>
+            <sc-if value="{{ hasOlder }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:6px">
+                <span onClick="{{ toggleOlder }}" style="align-self:flex-start; font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--ink-soft); cursor:pointer; padding:4px 0" style-hover="color:var(--accent)">{{ olderLabel }}</span>
+                <sc-if value="{{ olderOpen }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px solid var(--border); border-radius:4px; background:var(--panel); overflow:hidden">
+                    <sc-for list="{{ older }}" as="o" hint-placeholder-count="2">
+                      <div style="display:grid; grid-template-columns:90px 110px 1fr auto; gap:16px; align-items:center; padding:10px 18px; border-bottom:1px solid var(--border); font-family:'Azeret Mono',monospace; font-size:11.5px; letter-spacing:.02em">
+                        <span style="color:var(--ink)">{{ o.version }}</span>
+                        <span style="color:var(--muted)">{{ o.released }}</span>
+                        <span style="color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ o.file }}</span>
+                        <a href="{{ o.href }}" download="{{ o.file }}" title="{{ o.title }}" style="color:var(--ink-soft); text-decoration:none; opacity:{{ o.opacity }}; cursor:{{ o.cursor }}" style-hover="color:var(--accent)">Download</a>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px">
+          <sc-for list="{{ slots }}" as="s" hint-placeholder-count="2">
+            <div style="border:1px solid var(--border2); border-radius:4px; background:var(--panel); padding:8px; display:flex; flex-direction:column; gap:8px">
+              <div style="height:220px; position:relative" onClick="{{ s.zoom }}">
+                <image-slot id="{{ s.id }}" src="{{ s.src }}" shape="rounded" radius="3" placeholder="{{ s.placeholder }}"></image-slot>
+              </div>
+              <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); padding:0 4px">{{ s.caption }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div id="quickstart" style="display:flex; flex-direction:column; gap:14px">
+          <h2 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:24px; font-weight:400; letter-spacing:-.01em; color:var(--ink)">Quick start</h2>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+              <div style="display:grid; grid-template-columns:28px 1fr; gap:12px; font-size:15px; line-height:1.5; color:var(--ink-soft)">
+                <span style="font-family:'Azeret Mono',monospace; font-size:11px; color:var(--accent); padding-top:4px">{{ s.n }}</span>
+                <span>{{ s.t }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:var(--panel2); border:1px solid var(--border); border-radius:4px; padding:14px; font-family:'Azeret Mono',monospace; font-size:11.5px; color:var(--ink-soft); line-height:1.7">
+            <div style="font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); padding-bottom:6px">Example</div>
+            <sc-for list="{{ exampleLines }}" as="ln" hint-placeholder-count="3"><div>{{ ln }}</div></sc-for>
+          </div>
+        </div>
+
+        <div id="faq" style="display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap">
+            <h2 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:24px; font-weight:400; letter-spacing:-.01em; color:var(--ink)">FAQ</h2>
+            <sc-if value="{{ faqFilterable }}" hint-placeholder-val="{{ false }}">
+              <input type="search" value="{{ faqQuery }}" onChange="{{ setFaqQuery }}" placeholder="Filter questions" style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.02em; padding:6px 10px; border:1px solid var(--border2); border-radius:4px; background:var(--panel); color:var(--ink); outline:none; width:200px" style-focus="border-color:var(--accent)"></input>
+            </sc-if>
+          </div>
+          <sc-if value="{{ faqEmpty }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:14px; color:var(--muted)">No questions match “{{ faqQuery }}”.</span>
+          </sc-if>
+          <div style="display:flex; flex-direction:column">
+            <sc-for list="{{ faq }}" as="q" hint-placeholder-count="3">
+              <div style="padding:12px 0; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:4px">
+                <span style="font-size:15px; color:var(--ink)">{{ q.q }}</span>
+                <span style="font-size:14px; line-height:1.5; color:var(--ink-soft)">{{ q.a }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ hasAppNews }}" hint-placeholder-val="{{ false }}">
+        <div id="news" style="display:flex; flex-direction:column; gap:14px">
+          <h2 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:24px; font-weight:400; letter-spacing:-.01em; color:var(--ink)">News</h2>
+          <div style="display:flex; flex-direction:column">
+            <sc-for list="{{ appNews }}" as="n" hint-placeholder-count="2">
+              <div style="display:grid; grid-template-columns:110px 1fr; gap:16px; padding:12px 0; border-top:1px solid var(--border); font-size:14px; line-height:1.5">
+                <span style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--muted); padding-top:3px">{{ n.date }}</span>
+                <div style="display:flex; flex-direction:column; gap:2px">
+                  <span style="color:var(--ink); font-weight:500">{{ n.title }}</span>
+                  <span style="color:var(--ink-soft); text-wrap:pretty">{{ n.text }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+
+        <div id="discussion" style="display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap">
+            <h2 style="margin:0; font-family:'IBM Plex Serif',Georgia,serif; font-size:24px; font-weight:400; letter-spacing:-.01em; color:var(--ink)">Discussion</h2>
+            <a href="{{ discussionHref }}" style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--ink-soft); text-decoration:none" style-hover="color:var(--accent)">Open on GitHub ↗</a>
+          </div>
+          <div style="border:1px solid var(--border2); border-radius:4px; background:var(--panel); padding:16px; min-height:160px">
+            <div ref="{{ giscusRef }}"></div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="padding:44px 24px; border-left:1px solid var(--border); display:flex; flex-direction:column; min-height:0">
+      <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); padding-bottom:10px">{{ railTitle }}</div>
+      <div style="display:flex; flex-direction:column; gap:9px">
+        <sc-for list="{{ rail }}" as="r" hint-placeholder-count="4">
+          <span onClick="{{ r.go }}" style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--ink-soft); cursor:pointer" style-hover="color:var(--accent)">{{ r.label }}</span>
+        </sc-for>
+      </div>
+      <sc-if value="{{ updated }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:auto; padding-top:24px; font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">Updated {{ updated }}</div>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ lightbox }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed; inset:0; z-index:50; background:rgba(12,10,8,.82); display:flex; align-items:center; justify-content:center; padding:40px; cursor:zoom-out">
+      <div style="width:100%; height:100%; background-image:{{ lightboxBg }}; background-size:contain; background-position:center; background-repeat:no-repeat"></div>
+      <span style="position:absolute; top:18px; right:24px; font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:#f5e6d3">Close ✕</span>
+    </div>
+  </sc-if>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PRESETS = {
+  warm: {
+    "--bg":"#f4f2ec","--panel":"#ffffff","--panel2":"#faf9f4",
+    "--border":"#ebe6d9","--border2":"#d9d4c7",
+    "--ink":"#1a1a1a","--ink-soft":"#5a5a5a","--ink-faint":"#9a9a9a","--muted":"#8a8578",
+    "--accent":"#1f3b5b","--accent-soft":"#e6ebf2","--accent-hover":"#15293f","--on-accent":"#ffffff",
+    "--danger":"#8b2a2a","--warn":"#b3541e","--ok":"#2e6b45"
+  },
+  hot: {
+    "--bg":"#1a1310","--panel":"#241a14","--panel2":"#2e2119",
+    "--border":"#3a2c20","--border2":"#4d3a29",
+    "--ink":"#f5e6d3","--ink-soft":"#c9a184","--ink-faint":"#9a7c63","--muted":"#a08a6d",
+    "--accent":"#ff6d00","--accent-soft":"#3a2416","--accent-hover":"#ff8c33","--on-accent":"#1a1310",
+    "--danger":"#e0301e","--warn":"#ffb347","--ok":"#6fbf8f"
+  }
+};
+const STORE = "studio-home-theme-parts";
+
+const FALLBACK = { site: { title: "Traffic Studio", tagline: "", overviewEyebrow: "", overviewIntro: "" }, actions: ["Download", "Documentation", "Quick start", "FAQ", "Discussion", "Report a bug"], apps: [] };
+
+class Component extends DCLogic {
+  state = { sel: null, theme: "warm", content: null, loadError: false, faqQuery: "", olderOpen: false, lightbox: "" };
+  giscusRef = React.createRef();
+  giscusKey = "";
+
+  componentDidUpdate() { this.mountGiscus(); }
+
+  mountGiscus() {
+    const el = this.giscusRef.current;
+    const C = this.state.content, sel = this.state.sel;
+    const app = C && sel !== null ? C.apps[sel] : null;
+    const repo = C && C.site && C.site.discussionRepo;
+    const key = app && repo ? repo + "|" + app.name + "|" + this.state.theme : "";
+    if (!el) { this.giscusKey = ""; return; }
+    if (key === this.giscusKey) return;
+    this.giscusKey = key;
+    el.innerHTML = "";
+    if (!key) return;
+    const s = document.createElement("script");
+    const attrs = {
+      src: "https://giscus.app/client.js", "data-repo": repo,
+      "data-category": (C.site.discussionCategory || "General"),
+      "data-repo-id": C.site.discussionRepoId || "", "data-category-id": C.site.discussionCategoryId || "",
+      "data-mapping": "specific", "data-term": app.name, "data-strict": "0",
+      "data-reactions-enabled": "1", "data-emit-metadata": "0", "data-input-position": "top",
+      "data-theme": this.state.theme === "hot" ? "dark_dimmed" : "light", "data-lang": "en", crossorigin: "anonymous"
+    };
+    Object.entries(attrs).forEach(([k, v]) => { if (v) s.setAttribute(k, v); });
+    s.async = true;
+    el.appendChild(s);
+  }
+
+  componentDidMount() {
+    const apply = c => {
+      const apps = c.apps || [];
+      const slug = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+      const i = apps.findIndex(a => this.slug(a) === slug);
+      this.setState({ content: c, sel: i >= 0 ? i : null }, () => this.syncTitle());
+    };
+    const grab = (tries) => {
+      if (window.TRAFFIC_CONTENT) return apply(window.TRAFFIC_CONTENT);
+      if (tries > 0) return setTimeout(() => grab(tries - 1), 100);
+      console.warn("content.js did not load — check it for a missing comma or quote");
+      this.setState({ loadError: true });
+    };
+    grab(30);
+    window.addEventListener("hashchange", () => {
+      const C = this.state.content; if (!C) return;
+      const slug = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+      const i = (C.apps || []).findIndex(a => this.slug(a) === slug);
+      if (i !== this.state.sel && !(i < 0 && this.state.sel === null)) this.setState({ sel: i >= 0 ? i : null }, () => this.syncTitle());
+    });
+    try {
+      const raw = localStorage.getItem(STORE);
+      if (raw) {
+        const parts = JSON.parse(raw);
+        const name = parts["--bg"] === PRESETS.hot["--bg"] ? "hot" : "warm";
+        document.body.style.background = PRESETS[name]["--bg"];
+        if (name !== this.state.theme) this.setState({ theme: name });
+      }
+    } catch (e) {}
+  }
+
+  slug(a) { return (a.short || a.name || "").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase(); }
+
+  syncTitle() {
+    const C = this.state.content; if (!C) return;
+    const app = this.state.sel !== null ? C.apps[this.state.sel] : null;
+    document.title = app ? app.name + " · " + C.site.title : C.site.title;
+  }
+
+  setTheme(name) {
+    try { localStorage.setItem(STORE, JSON.stringify(PRESETS[name])); } catch (e) {}
+    document.body.style.background = PRESETS[name]["--bg"];
+    this.setState({ theme: name });
+  }
+
+  renderVals() {
+    const theme = this.state.theme;
+    const T = PRESETS[theme];
+    const C = this.state.content || FALLBACK;
+    const apps = C.apps || [];
+    const actions = C.actions || FALLBACK.actions;
+    const sel = this.state.sel !== null && this.state.sel < apps.length ? this.state.sel : null;
+    const cur = sel === null ? null : apps[sel];
+    const anchors = { "Download": "release", "Quick start": "quickstart", "FAQ": "faq", "Discussion": "discussion" };
+    const siteLinks = { "Discussion": (C.site && C.site.discussion) || "" };
+    const linkFor = (app, a) => (app.links && app.links[a]) || siteLinks[a] || "#";
+    const dead = href => href === "#";
+    const actionLinks = app => actions.map((a, i) => {
+      const idx = apps.indexOf(app);
+      const href = anchors[a] ? "#" + this.slug(app) : linkFor(app, a);
+      const isDead = !anchors[a] && dead(href);
+      return {
+        label: a, href, target: "_self",
+        go: anchors[a] ? (e => { e.preventDefault(); pick(idx)(); setTimeout(jump(anchors[a]), 60); }) : (e => { if (isDead) e.preventDefault(); }),
+        title: isDead ? "Link not set yet (content.js)" : "",
+        opacity: isDead ? .45 : 1, cursor: isDead ? "default" : "pointer",
+        weight: i === 0 ? 600 : 400, color: i === 0 ? T["--accent"] : T["--ink-soft"]
+      };
+    });
+    const pick = i => () => {
+      this.setState({ sel: i, faqQuery: "", olderOpen: false }, () => this.syncTitle());
+      const hash = i === null ? "" : "#" + this.slug(apps[i]);
+      if (location.hash !== hash) history.replaceState(null, "", location.pathname + location.search + hash);
+      const sc = document.getElementById("scroll"); if (sc) sc.scrollTop = 0;
+    };
+    const jump = id => () => {
+      const el = document.getElementById(id), sc = document.getElementById("scroll");
+      if (el && sc) sc.scrollTop += el.getBoundingClientRect().top - sc.getBoundingClientRect().top - 24;
+    };
+
+    const menu = [{ label: "Overview", i: null }].concat(apps.map((a, i) => ({ label: a.short, i }))).map(m => ({
+      label: m.label, select: pick(m.i),
+      color: m.i === sel ? T["--ink"] : T["--ink-soft"],
+      rule: m.i === sel ? T["--accent"] : "transparent"
+    }));
+
+    const tabs = actions.map(a => {
+      const href = cur && anchors[a] ? "#" + this.slug(cur) : (cur ? linkFor(cur, a) : "#");
+      const isDead = !anchors[a] && dead(href);
+      return {
+        label: a, href, target: "_self",
+        go: anchors[a] ? (e => { e.preventDefault(); jump(anchors[a])(); }) : (e => { if (isDead) e.preventDefault(); }),
+        title: isDead ? "Link not set yet (content.js)" : "",
+        opacity: isDead ? .45 : 1, cursor: isDead ? "default" : "pointer",
+        color: a === "Download" ? T["--ink"] : T["--ink-soft"],
+        weight: a === "Download" ? 600 : 400,
+        rule: a === "Download" ? T["--accent"] : "transparent"
+      };
+    });
+
+    const newsAll = C.news || [];
+    const appBy = short => apps.findIndex(a => (a.short || "").toLowerCase() === String(short || "").toLowerCase() || (a.name || "").toLowerCase() === String(short || "").toLowerCase());
+    const news = newsAll.map(n => {
+      const i = n.app ? appBy(n.app) : -1;
+      return Object.assign({}, n, {
+        tag: i >= 0 ? apps[i].short : "All",
+        tagColor: i >= 0 ? T["--accent"] : T["--muted"],
+        tagCursor: i >= 0 ? "pointer" : "default",
+        open: i >= 0 ? pick(i) : (() => {})
+      });
+    });
+    const appNews = cur ? newsAll.filter(n => n.app && appBy(n.app) === sel) : [];
+    const feedHref = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ title: (C.site && C.site.title) || "News", updated: (C.site && C.site.updated) || "", items: newsAll }, null, 2));
+    const fq = this.state.faqQuery.trim().toLowerCase();
+    const faqAll = cur ? (cur.faq || []) : [];
+    const faq = fq ? faqAll.filter(q => ((q.q || "") + " " + (q.a || "")).toLowerCase().includes(fq)) : faqAll;
+    const older = cur ? (cur.previous || []).map(o => {
+      const href = o.url || "";
+      return Object.assign({}, o, { href: href || "#", title: href ? "" : "Link not set yet (content.js)", opacity: href ? 1 : .45, cursor: href ? "pointer" : "default" });
+    }) : [];
+    return {
+      site: C.site || FALLBACK.site,
+      updated: (C.site && C.site.updated) || false,
+      feedHref,
+      appNews, hasAppNews: appNews.length > 0,
+      faqQuery: this.state.faqQuery,
+      setFaqQuery: e => this.setState({ faqQuery: e.target.value }),
+      faqFilterable: faqAll.length > 3,
+      faqEmpty: !!fq && faq.length === 0,
+      older, hasOlder: older.length > 0,
+      olderOpen: this.state.olderOpen,
+      olderLabel: (this.state.olderOpen ? "▾ Hide older releases" : "▸ Older releases") + " (" + older.length + ")",
+      toggleOlder: () => this.setState(s => ({ olderOpen: !s.olderOpen })),
+      lightbox: this.state.lightbox || false,
+      lightboxBg: this.state.lightbox ? "url(\"" + this.state.lightbox + "\")" : "none",
+      closeLightbox: () => this.setState({ lightbox: "" }),
+      downloadHref: cur ? linkFor(cur, "Download") : "#",
+      discussionHref: cur ? linkFor(cur, "Discussion") : "#",
+      giscusRef: this.giscusRef,
+      loadError: this.state.loadError,
+      news, hasNews: news.length > 0,
+      changelog: cur ? (cur.changelog || []) : [],
+      hasChangelog: !!(cur && cur.changelog && cur.changelog.length),
+      exampleLines: cur ? [cur.file].concat((cur.example || []).map(l => "\u00a0\u00a0— " + l)) : [],
+      ticket: cur ? [
+        { k: "Version", v: cur.version || "—" },
+        { k: "Released", v: cur.released || "—" },
+        { k: "Size", v: cur.size || "—" },
+        { k: "Format", v: "HTML" }
+      ] : [],
+      slots: cur ? Array.from({ length: Math.max(2, ((cur.images || []).length)) }, (_, i) => i).map(i => ({
+        id: (cur.file || cur.name || "app").replace(/[^a-z0-9]+/gi, "-").toLowerCase() + "-shot-" + (i + 1),
+        src: (cur.images && cur.images[i]) || "",
+        placeholder: "Drop screenshot " + (i + 1),
+        caption: (cur.captions && cur.captions[i]) || "Screenshot " + (i + 1),
+        zoom: e => {
+          const slot = e.currentTarget.querySelector("image-slot");
+          const src = slot && slot.hasAttribute("data-filled") && slot._img ? slot._img.getAttribute("src") : "";
+          if (src) this.setState({ lightbox: src });
+        }
+      })) : [],
+      tabs,
+      themeVars: T,
+      themes: ["warm", "hot"].map(n => ({
+        label: n === "warm" ? "Warm" : "Hot",
+        select: () => this.setTheme(n),
+        weight: n === theme ? 600 : 400,
+        border: n === theme ? T["--accent"] : T["--border2"],
+        bg: n === theme ? T["--accent"] : "transparent",
+        fg: n === theme ? T["--on-accent"] : T["--ink-soft"]
+      })),
+      menu,
+      isHome: sel === null,
+      current: cur || false,
+      goHome: pick(null),
+      railTitle: sel === null ? "The suite" : "On this page",
+      rail: sel === null
+        ? apps.map((a, i) => ({ label: a.name, go: pick(i) }))
+        : [{ label: "Release", go: jump("release") }, { label: "Quick start", go: jump("quickstart") }, { label: "FAQ", go: jump("faq") }].concat(appNews.length ? [{ label: "News", go: jump("news") }] : []).concat([{ label: "Discussion", go: jump("discussion") }]),
+      steps: cur ? (cur.quickStart || []).map((t, i) => ({ n: String(i + 1).padStart(2, "0"), t })) : [],
+      faq,
+      apps: apps.map((a, i) => Object.assign({}, a, { open: pick(i), actionLinks: actionLinks(a) }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
