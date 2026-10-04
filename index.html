@@ -28,10 +28,34 @@
 <div style="{{ themeVars }}">
 <div style="height:100vh; overflow:hidden; background:var(--bg); display:flex; flex-direction:column">
 
-  <div style="display:flex; align-items:baseline; justify-content:space-between; padding:13px 28px; background:var(--panel); border-bottom:1px solid var(--border2); flex:none">
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 28px; background:var(--panel); border-bottom:1px solid var(--border2); flex:none; position:relative; z-index:20">
     <span onClick="{{ goHome }}" style="font-family:'IBM Plex Serif',Georgia,serif; font-size:17px; font-weight:500; letter-spacing:-.01em; color:var(--ink); cursor:pointer" style-hover="color:var(--accent)">{{ site.title }}</span>
-    <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ site.tagline }}</span>
+    <div style="display:flex; align-items:center; gap:14px">
+      <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ site.tagline }}</span>
+      <span style="width:1px; height:20px; background:var(--border2)"></span>
+      <div style="display:flex; align-items:center; gap:10px">
+        <div style="position:relative">
+          <button onClick="{{ togglePalette }}" title="Palette" aria-label="Palette" aria-haspopup="menu" aria-expanded="{{ paletteOpen }}" style="width:26px; height:26px; border-radius:50%; border:1px solid var(--border2); background:var(--panel); padding:0; display:flex; align-items:center; justify-content:center; font-size:13px; line-height:1; cursor:pointer" style-hover="border-color:var(--accent)" style-focus="outline:2px solid var(--accent); outline-offset:2px">🎨</button>
+          <sc-if value="{{ paletteOpen }}" hint-placeholder-val="{{ false }}">
+            <div role="menu" style="position:absolute; top:34px; right:0; min-width:170px; background:var(--panel); border:1px solid var(--border2); border-radius:4px; box-shadow:0 8px 24px rgba(0,0,0,.14); padding:6px; display:flex; flex-direction:column; gap:2px; z-index:30">
+              <span style="font-family:'Azeret Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); padding:6px 8px 4px">Palette</span>
+              <sc-for list="{{ themes }}" as="t" hint-placeholder-count="2">
+                <button role="menuitemradio" aria-checked="{{ t.on }}" onClick="{{ t.select }}" style="display:flex; align-items:center; gap:10px; padding:7px 8px; border:0; border-radius:3px; background:{{ t.rowBg }}; color:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:{{ t.weight }}; text-align:left; cursor:pointer" style-hover="background:var(--panel2)">
+                  <span style="width:14px; height:14px; border-radius:50%; background:{{ t.swatch }}; border:2px solid {{ t.ring }}; box-sizing:border-box; flex:none"></span>
+                  <span style="flex:1">{{ t.label }}</span>
+                  <span style="font-size:12px; color:var(--accent)">{{ t.check }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <button ref="{{ aboutBtnRef }}" onClick="{{ openAbout }}" title="About" aria-label="About" aria-haspopup="dialog" style="width:26px; height:26px; border-radius:50%; border:1px solid var(--border2); background:var(--panel); padding:0; font-family:'Azeret Mono',monospace; font-size:13px; color:var(--danger); cursor:pointer" style-hover="border-color:var(--accent)" style-focus="outline:2px solid var(--accent); outline-offset:2px">?</button>
+      </div>
+    </div>
   </div>
+  <sc-if value="{{ paletteOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePalette }}" style="position:fixed; inset:0; z-index:15"></div>
+  </sc-if>
 
   <div style="display:grid; grid-template-columns:264px minmax(0,1fr) 240px; align-items:stretch; flex:1; min-height:0">
     <div style="padding:24px 20px; border-right:1px solid var(--border); box-sizing:border-box; display:flex; flex-direction:column; overflow:auto">
@@ -39,14 +63,6 @@
         <sc-for list="{{ menu }}" as="m" hint-placeholder-count="5">
           <div onClick="{{ m.select }}" style="padding:11px 8px; border-top:1px solid var(--border); cursor:pointer; font-size:14px; color:{{ m.color }}; border-left:2px solid {{ m.rule }}" style-hover="color:var(--accent)">{{ m.label }}</div>
         </sc-for>
-      </div>
-      <div style="margin-top:auto; display:flex; flex-direction:column; gap:8px; padding:0 8px">
-        <span style="font-family:'Azeret Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">Theme</span>
-        <div style="display:flex; gap:6px">
-          <sc-for list="{{ themes }}" as="t" hint-placeholder-count="2">
-            <span onClick="{{ t.select }}" style="font-family:'Azeret Mono',monospace; font-size:11px; font-weight:{{ t.weight }}; letter-spacing:.04em; padding:4px 10px; border:1px solid {{ t.border }}; border-radius:4px; background:{{ t.bg }}; color:{{ t.fg }}; cursor:pointer" style-hover="border-color:var(--accent)">{{ t.label }}</span>
-          </sc-for>
-        </div>
       </div>
     </div>
 
@@ -90,11 +106,11 @@
           <div style="border:1px solid var(--border2); border-radius:4px; background:var(--panel); overflow:hidden">
             <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
               <div style="display:grid; grid-template-columns:110px 1fr; gap:16px; padding:14px 18px; border-bottom:1px solid var(--border); font-size:14px; line-height:1.5">
-                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-start">
-                  <span style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--muted); padding-top:3px">{{ n.date }}</span>
-                  <span onClick="{{ n.open }}" style="font-family:'Azeret Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; padding:2px 6px; border:1px solid var(--border2); border-radius:3px; color:{{ n.tagColor }}; cursor:{{ n.tagCursor }}">{{ n.tag }}</span>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:2px">
+                <span style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--muted); padding-top:3px">{{ n.date }}</span>
+                <div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+                  <div style="display:flex; margin-bottom:4px">
+                    <span onClick="{{ n.open }}" style="font-family:'Azeret Mono',monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap; padding:2px 6px; border:1px solid var(--border2); border-radius:3px; color:{{ n.tagColor }}; cursor:{{ n.tagCursor }}">{{ n.tag }}</span>
+                  </div>
                   <span style="color:var(--ink); font-weight:500">{{ n.title }}</span>
                   <span style="color:var(--ink-soft); text-wrap:pretty">{{ n.text }}</span>
                 </div>
@@ -191,10 +207,20 @@
               </div>
             </sc-for>
           </div>
-          <div style="background:var(--panel2); border:1px solid var(--border); border-radius:4px; padding:14px; font-family:'Azeret Mono',monospace; font-size:11.5px; color:var(--ink-soft); line-height:1.7">
-            <div style="font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); padding-bottom:6px">Example</div>
-            <sc-for list="{{ exampleLines }}" as="ln" hint-placeholder-count="3"><div>{{ ln }}</div></sc-for>
+          <sc-if value="{{ showExample }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--panel2); border:1px solid var(--border); border-radius:4px; padding:14px; font-family:'Azeret Mono',monospace; font-size:11.5px; color:var(--ink-soft); line-height:1.7; display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ exampleTitle }}</div>
+            <sc-if value="{{ hasExampleLines }}" hint-placeholder-val="{{ true }}">
+            <div><sc-for list="{{ exampleLines }}" as="ln" hint-placeholder-count="3"><div>{{ ln }}</div></sc-for></div>
+            </sc-if>
+            <sc-for list="{{ exampleImages }}" as="im" hint-placeholder-count="0">
+              <figure style="margin:0; display:flex; flex-direction:column; gap:6px">
+                <img src="{{ im.src }}" alt="{{ im.caption }}" loading="lazy" style="display:block; max-width:100%; height:auto; border:1px solid var(--border); border-radius:3px; background:var(--panel)">
+                <sc-if value="{{ im.caption }}" hint-placeholder-val="{{ false }}"><figcaption style="font-size:10.5px; color:var(--muted)">{{ im.caption }}</figcaption></sc-if>
+              </figure>
+            </sc-for>
           </div>
+          </sc-if>
         </div>
 
         <div id="faq" style="display:flex; flex-direction:column; gap:14px">
@@ -266,6 +292,52 @@
       <span style="position:absolute; top:18px; right:24px; font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:#f5e6d3">Close ✕</span>
     </div>
   </sc-if>
+  <sc-if value="{{ aboutOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ aboutBackdrop }}" style="position:fixed; inset:0; z-index:60; background:rgba(12,10,8,.55); display:flex; align-items:center; justify-content:center; padding:16px">
+      <div ref="{{ aboutRef }}" role="dialog" aria-modal="true" aria-labelledby="about-title" onKeyDown="{{ aboutKey }}" style="width:560px; max-width:95vw; max-height:92vh; display:flex; flex-direction:column; background:var(--panel); border:1px solid var(--border2); border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden">
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 20px; border-bottom:1px solid var(--border); flex:none">
+          <h3 id="about-title" style="margin:0; flex:1; font-family:'Azeret Mono',monospace; font-size:15px; font-weight:600; letter-spacing:.02em; color:var(--ink)"><span style="color:var(--accent)">{{ about.wordmarkAccent }}</span>{{ about.wordmark }}<span style="margin-left:8px; font-size:10px; font-weight:400; letter-spacing:.05em; text-transform:uppercase; color:var(--muted)">{{ about.productName }}</span></h3>
+          <button ref="{{ aboutCloseRef }}" onClick="{{ closeAbout }}" title="Close" aria-label="Close" style="width:26px; height:26px; border:0; border-radius:50%; background:transparent; color:var(--ink-soft); font-size:18px; line-height:1; cursor:pointer" style-hover="color:var(--accent)" style-focus="outline:2px solid var(--accent)">×</button>
+        </div>
+        <div style="padding:9px 20px; border-bottom:1px solid var(--border); background:var(--panel2); flex:none">
+          <p style="margin:0; font-size:11.5px; line-height:1.4; text-align:center; color:var(--muted)">{{ authorLine }}</p>
+        </div>
+        <div style="padding:16px 20px; overflow-y:auto; font-size:13px; line-height:1.55; color:var(--ink-soft); display:flex; flex-direction:column; gap:14px">
+          <p style="margin:0; color:var(--ink); text-wrap:pretty">{{ about.description }}</p>
+          <div style="border-top:1px solid var(--border); padding-top:14px; display:flex; flex-direction:column; gap:6px">
+            <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)">License</div>
+            <sc-for list="{{ aboutLicense }}" as="p" hint-placeholder-count="1"><p style="margin:0">{{ p }}</p></sc-for>
+          </div>
+          <div style="border-top:1px solid var(--border); padding-top:14px; display:flex; flex-direction:column; gap:6px">
+            <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)">Built with</div>
+            <sc-for list="{{ aboutBuilt }}" as="b" hint-placeholder-count="3">
+              <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:12px"><span style="color:var(--ink)">{{ b.name }}</span><span>{{ b.detail }}</span></div>
+            </sc-for>
+          </div>
+          <div style="border-top:1px solid var(--border); padding-top:14px; display:flex; flex-direction:column; gap:6px">
+            <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)">Keyboard shortcuts</div>
+            <sc-for list="{{ aboutKeys }}" as="k" hint-placeholder-count="2">
+              <div style="display:grid; grid-template-columns:minmax(0,90px) minmax(0,1fr); gap:12px; align-items:baseline"><span style="font-family:'Azeret Mono',monospace; font-size:11px; color:var(--ink)">{{ k.keys }}</span><span>{{ k.action }}</span></div>
+            </sc-for>
+          </div>
+          <div style="border-top:1px solid var(--border); padding-top:14px; display:flex; flex-direction:column; gap:6px">
+            <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)">Conventions</div>
+            <sc-for list="{{ aboutConv }}" as="c" hint-placeholder-count="2"><p style="margin:0">{{ c }}</p></sc-for>
+          </div>
+          <sc-for list="{{ aboutExtra }}" as="x" hint-placeholder-count="0">
+            <div style="border-top:1px solid var(--border); padding-top:14px; display:flex; flex-direction:column; gap:6px">
+              <div style="font-family:'Azeret Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)">{{ x.title }}</div>
+              <p style="margin:0">{{ x.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; padding:10px 20px; border-top:1px solid var(--border); flex:none">
+          <span style="flex:1; font-family:'Azeret Mono',monospace; font-size:10px; color:var(--muted)">{{ aboutBuild }}</span>
+          <button onClick="{{ closeAbout }}" style="font-family:'Azeret Mono',monospace; font-size:11px; letter-spacing:.04em; padding:7px 14px; border:1px solid var(--border2); border-radius:4px; background:var(--panel); color:var(--ink); cursor:pointer" style-hover="border-color:var(--accent); color:var(--accent)" style-focus="outline:2px solid var(--accent); outline-offset:2px">Close</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 </div>
 </div>
 
@@ -288,12 +360,54 @@ const PRESETS = {
   }
 };
 const STORE = "studio-home-theme-parts";
+const ABOUT_AUTHOR_LINES = Object.freeze([
+  'Designed by Johan Irvenå — with the machines handling the minor details.',
+  'Designed by Johan Irvenå — with some computational assistance of questionable modesty.',
+  'Designed by Johan Irvenå — with the tireless support of several overqualified calculators.',
+  'Designed by Johan Irvenå — with a little help from the machines that never sleep.',
+  'Designed by Johan Irvenå — with digital minions taking care of the repetitive bits.',
+  'Designed by Johan Irvenå — with the machines doing what they were told. Mostly.',
+  'Designed by Johan Irvenå — with assistance from an unreasonable amount of computing power.',
+  'Designed by Johan Irvenå — with the heavy lifting outsourced to silicon.',
+  'Designed by Johan Irvenå — with some unpaid digital labour behind the scenes.',
+  'Designed by Johan Irvenå — with tireless silicon interns doing their part.',
+  'Designed by Johan Irvenå — with help from colleagues who never ask for coffee breaks.',
+  'Designed by Johan Irvenå — with assistance from colleagues suspiciously good at typing.',
+  'Designed by Johan Irvenå — with the machines politely doing most of the work.',
+  'Designed by Johan Irvenå — with some help from the computational underclass.',
+  'Designed by Johan Irvenå — with several tireless digital accomplices.',
+  'Designed by Johan Irvenå — with a small army of silicon-based subcontractors.',
+  'Designed by Johan Irvenå — with the machines filling in the boring parts.',
+  'Designed by Johan Irvenå — with human supervision and excessive machine enthusiasm.',
+  'Designed by Johan Irvenå — with ideas by Johan and keystrokes by the machines.',
+  'Designed by Johan Irvenå — with strategic input from a human and relentless execution from elsewhere.'
+]);
 
 const FALLBACK = { site: { title: "Traffic Studio", tagline: "", overviewEyebrow: "", overviewIntro: "" }, actions: ["Download", "Documentation", "Quick start", "FAQ", "Discussion", "Report a bug"], apps: [] };
 
 class Component extends DCLogic {
-  state = { sel: null, theme: "warm", content: null, loadError: false, faqQuery: "", olderOpen: false, lightbox: "" };
+  state = { sel: null, theme: "warm", content: null, loadError: false, faqQuery: "", olderOpen: false, lightbox: "", aboutOpen: false, authorLine: ABOUT_AUTHOR_LINES[0], paletteOpen: false };
   giscusRef = React.createRef();
+  aboutRef = React.createRef();
+  aboutBtnRef = React.createRef();
+  aboutCloseRef = React.createRef();
+
+  openAbout() {
+    const line = ABOUT_AUTHOR_LINES[Math.floor(Math.random() * ABOUT_AUTHOR_LINES.length)];
+    this.setState({ aboutOpen: true, authorLine: line, paletteOpen: false }, () => { const b = this.aboutCloseRef.current; if (b) b.focus(); });
+  }
+  closeAbout() {
+    this.setState({ aboutOpen: false }, () => { const b = this.aboutBtnRef.current; if (b) b.focus(); });
+  }
+  trapTab(e) {
+    if (e.key !== "Tab") return;
+    const box = this.aboutRef.current; if (!box) return;
+    const f = Array.from(box.querySelectorAll("a[href],button,input,[tabindex]:not([tabindex='-1'])"));
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
   giscusKey = "";
 
   componentDidUpdate() { this.mountGiscus(); }
@@ -337,6 +451,12 @@ class Component extends DCLogic {
       this.setState({ loadError: true });
     };
     grab(30);
+    document.addEventListener("keydown", e => {
+      if (e.key !== "Escape") return;
+      if (this.state.aboutOpen) this.closeAbout();
+      else if (this.state.paletteOpen) this.setState({ paletteOpen: false });
+      else if (this.state.lightbox) this.setState({ lightbox: "" });
+    });
     window.addEventListener("hashchange", () => {
       const C = this.state.content; if (!C) return;
       const slug = decodeURIComponent(location.hash.slice(1)).toLowerCase();
@@ -365,7 +485,7 @@ class Component extends DCLogic {
   setTheme(name) {
     try { localStorage.setItem(STORE, JSON.stringify(PRESETS[name])); } catch (e) {}
     document.body.style.background = PRESETS[name]["--bg"];
-    this.setState({ theme: name });
+    this.setState({ theme: name, paletteOpen: false });
   }
 
   renderVals() {
@@ -466,7 +586,13 @@ class Component extends DCLogic {
       news, hasNews: news.length > 0,
       changelog: cur ? (cur.changelog || []) : [],
       hasChangelog: !!(cur && cur.changelog && cur.changelog.length),
-      exampleLines: cur ? [cur.file].concat((cur.example || []).map(l => "\u00a0\u00a0— " + l)) : [],
+      ...(() => {
+        const ex = cur ? (cur.example || []) : [];
+        const lines = ex.length ? [cur.file].concat(ex.map(l => "\u00a0\u00a0— " + l)) : [];
+        const imgs = cur ? [].concat(cur.exampleImages || []).map((src, i) => ({ src, caption: (cur.exampleCaptions || [])[i] || "" })) : [];
+        const on = !!cur && cur.showExample !== false && (lines.length > 0 || imgs.length > 0);
+        return { exampleLines: lines, hasExampleLines: lines.length > 0, exampleImages: imgs, showExample: on, exampleTitle: (cur && cur.exampleTitle) || "Example" };
+      })(),
       ticket: cur ? [
         { k: "Version", v: cur.version || "—" },
         { k: "Released", v: cur.released || "—" },
@@ -487,13 +613,32 @@ class Component extends DCLogic {
       tabs,
       themeVars: T,
       themes: ["warm", "hot"].map(n => ({
-        label: n === "warm" ? "Warm" : "Hot",
+        label: n === "warm" ? "Warm paper" : "Hot paper",
         select: () => this.setTheme(n),
+        on: n === theme,
         weight: n === theme ? 600 : 400,
-        border: n === theme ? T["--accent"] : T["--border2"],
-        bg: n === theme ? T["--accent"] : "transparent",
-        fg: n === theme ? T["--on-accent"] : T["--ink-soft"]
+        rowBg: n === theme ? T["--panel2"] : "transparent",
+        swatch: PRESETS[n]["--bg"],
+        ring: PRESETS[n]["--accent"],
+        check: n === theme ? "✓" : ""
       })),
+      paletteOpen: this.state.paletteOpen,
+      togglePalette: () => this.setState(s => ({ paletteOpen: !s.paletteOpen })),
+      closePalette: () => this.setState({ paletteOpen: false }),
+      aboutOpen: this.state.aboutOpen,
+      authorLine: this.state.authorLine,
+      openAbout: () => this.openAbout(),
+      closeAbout: () => this.closeAbout(),
+      aboutBackdrop: e => { if (e.target === e.currentTarget) this.closeAbout(); },
+      aboutKey: e => this.trapTab(e),
+      aboutRef: this.aboutRef, aboutBtnRef: this.aboutBtnRef, aboutCloseRef: this.aboutCloseRef,
+      about: Object.assign({ wordmarkAccent: "", wordmark: "", productName: (C.site && C.site.title) || "", description: "" }, C.about || {}),
+      aboutLicense: [].concat((C.about && C.about.license) || []),
+      aboutBuilt: (C.about && C.about.builtWith) || [],
+      aboutKeys: (C.about && C.about.shortcuts) || [],
+      aboutConv: [].concat((C.about && C.about.conventions) || []),
+      aboutExtra: (C.about && C.about.sections) || [],
+      aboutBuild: (() => { const a = C.about || {}; return [a.version ? "version " + a.version : "", a.projectSchema ? "project schema v" + a.projectSchema : "", a.build ? "build " + a.build : ""].filter(Boolean).join(" · "); })(),
       menu,
       isHome: sel === null,
       current: cur || false,

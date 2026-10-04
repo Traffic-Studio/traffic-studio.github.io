@@ -1,6 +1,6 @@
 window.TRAFFIC_CONTENT =
 {
-  "_help": "Edit the text between the quotes. Keep the commas and quotes as they are. Links: site.discussion applies to every app unless an app sets its own Discussion link. Deep links: each app page has its own address, e.g. index.html#intersection (the short name, lower-case, spaces as hyphens). Images: put files in the images/ folder and type the filename (e.g. \"images/intersection-1.png\"), or leave \"\" to keep the drop zone empty.",
+  "_help": "Edit the text between the quotes. Keep the commas and quotes as they are. Links: site.discussion applies to every app unless an app sets its own Discussion link. Deep links: each app page has its own address, e.g. index.html#intersection-layout (the short name, lower-case, spaces as hyphens). Images: put files in the images/ folder and type the filename (e.g. \"images/intersection-1.png\"), or leave \"\" to keep the drop zone empty.",
 
   "site": {
     "title": "Traffic Studio",
@@ -15,9 +15,40 @@ window.TRAFFIC_CONTENT =
     "overviewIntro": "A family of browser-based tools for traffic analysis. Because producing a result is easy. Deciding whether to believe it is the interesting part."
   },
 
+  "about": {
+    "_help": "The About box (the ? button, top right). Follows the Traffic Studio About dialog standard: description, License, Built with, Keyboard shortcuts, Conventions. The 'Designed by Johan Irvenå …' line is fixed by the standard and picked at random each time the box opens; it is not edited here. Footer: version, projectSchema and build are shown as 'version … · project schema v… · build …'; leave a value \"\" to hide that part. Deviation from the standard: the homepage has no build step or studio.config.json, so these values live here and must be updated by hand when you publish.",
+    "wordmarkAccent": "T",
+    "wordmark": "STUDIO",
+    "productName": "Traffic Studio",
+    "description": "Traffic Studio is the home of a family of local-first browser tools for traffic analysis. This page lists each Studio with its current release, quick start, FAQ, news and discussion. The page itself does not run any analysis; each Studio is a separate single HTML file you download and open.",
+    "license": [
+      "MIT License. The full licence text is in the LICENSE file of each repository.",
+      "The software is provided “as is”, without warranty of any kind."
+    ],
+    "builtWith": [
+      { "name": "IBM Plex Sans, IBM Plex Serif", "detail": "Typefaces · SIL Open Font License 1.1" },
+      { "name": "Azeret Mono", "detail": "Typeface · SIL Open Font License 1.1" },
+      { "name": "Google Fonts", "detail": "Font delivery · contacted when the page loads" },
+      { "name": "giscus", "detail": "Discussion threads from GitHub Discussions · contacted when an app page is opened" }
+    ],
+    "shortcuts": [
+      { "keys": "Esc", "action": "Close the About box, the palette or an enlarged screenshot" },
+      { "keys": "Tab", "action": "Move between links and controls" }
+    ],
+    "conventions": [
+      "Dates are written YYYY-MM-DD.",
+      "The chosen palette (warm or hot paper) is remembered in this browser only.",
+      "Each app page has its own address, e.g. index.html#intersection-layout."
+    ],
+    "sections": [],
+    "version": "1.0",
+    "projectSchema": "",
+    "build": "2026-10-04"
+  },
+
   "news": [
     { "date": "2026-10-04", "app": "", "title": "Site launched", "text": "Finally." },
-    { "date": "2026-10-04", "app": "Intersection", "title": "Intersection Studio v1.2", "text": "First public release." }
+    { "date": "2026-10-04", "app": "Intersection Layout", "title": "Intersection Layout Studio v1.2", "text": "First public release." }
   ],
 
   "actions": ["Download", "Documentation", "Quick start", "FAQ", "Discussion", "Report a bug"],
@@ -25,8 +56,8 @@ window.TRAFFIC_CONTENT =
   "apps": [
     {
       "num": "01",
-      "name": "Intersection Studio",
-      "short": "Intersection",
+      "name": "Intersection Layout Studio",
+      "short": "Intersection Layout",
       "domain": "Visualization · Traffic flows · Results",
       "description": "Visualize intersections, traffic flows, and results.",
       "version": "v0.0",
@@ -35,9 +66,9 @@ window.TRAFFIC_CONTENT =
       "changelog": [
         "Placeholder. First public release."
       ],
-      "file": "intersection-studio-0.0.html",
+      "file": "intersection-layout-studio-0.0.html",
       "previous": [
-        { "version": "v0.0-beta", "released": "—", "file": "intersection-studio-0.0-beta.html", "url": "" }
+        { "version": "v0.0-beta", "released": "—", "file": "intersection-layout-studio-0.0-beta.html", "url": "" }
       ],
       "links": {
         "Download": "",
@@ -45,11 +76,15 @@ window.TRAFFIC_CONTENT =
         "Quick start": "",
         "FAQ": "",
         "Discussion": "https://github.com/Traffic-Studio/Discussion",
-        "Report a bug": "https://github.com/Traffic-Studio/Intersection-Studio/issues"
+        "Report a bug": "https://github.com/Traffic-Studio/Intersection-Layout-Studio/issues"
       },
       "images": ["images/IS-pic1.jpg", "images/IS-pic2.png", "images/IS-pic3.png", "images/IS-pic4.png", "images/IS-pic5.png", "images/IS-pic6.png", "images/IS-pic7.png"],
       "captions": ["Interface", "Roundabout", "Traffic signal", "Results", "Compare", "Traffic flows diagram", "Traffic flows"],
+      "showExample": false,
+      "exampleTitle": "Example",
       "example": ["open in any browser", "data stays on your machine"],
+      "exampleImages": [],
+      "exampleCaptions": [],
       "quickStart": [
         "Download the single HTML file.",
         "Open it in a browser.",
