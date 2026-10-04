@@ -47,8 +47,8 @@ window.TRAFFIC_CONTENT =
         "Discussion": "https://github.com/Traffic-Studio/Discussion",
         "Report a bug": "https://github.com/Traffic-Studio/Intersection-Studio/issues"
       },
-      "images": ["images/IS-pic1.png", "images/IS-pic2.png", "images/IS-pic3.png", "images/IS-pic4.png", "images/IS-pic5.png", "images/IS-pic6.png"],
-      "captions": ["Roundabout", "Traffic signal", "Results", "Compare", "Traffic flows diagram", "Traffic flows"],
+      "images": ["images/IS-pic1.jpg", "images/IS-pic2.png", "images/IS-pic3.png", "images/IS-pic4.png", "images/IS-pic5.png", "images/IS-pic6.png", "images/IS-pic7.png"],
+      "captions": ["Interface", "Roundabout", "Traffic signal", "Results", "Compare", "Traffic flows diagram", "Traffic flows"],
       "example": ["open in any browser", "data stays on your machine"],
       "quickStart": [
         "Download the single HTML file.",
