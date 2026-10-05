@@ -452,7 +452,8 @@ class Component extends DCLogic {
       "data-repo-id": C.site.discussionRepoId || "", "data-category-id": C.site.discussionCategoryId || "",
       "data-mapping": "specific", "data-term": app.name, "data-strict": "0",
       "data-reactions-enabled": "1", "data-emit-metadata": "0", "data-input-position": "top",
-      "data-theme": this.state.theme === "hot" ? "dark_dimmed" : "light", "data-lang": "en", crossorigin: "anonymous"
+      "data-theme": this.state.theme === "hot" ? "dark_dimmed" : "light", "data-lang": "en", crossorigin: "anonymous",
+      "data-loading": "lazy"
     };
     Object.entries(attrs).forEach(([k, v]) => { if (v) s.setAttribute(k, v); });
     s.async = true;

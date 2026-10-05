@@ -66,7 +66,7 @@ window.TRAFFIC_CONTENT =
       "date": "2026-10-04",
       "app": "",
       "title": "Site launched",
-      "text": "Finally."
+      "text": "The Traffic Studio homepage is now up and running — apparently we have a website now."
     },
     {
       "date": "2026-10-04",
