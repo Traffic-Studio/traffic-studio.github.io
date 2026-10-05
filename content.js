@@ -4,7 +4,7 @@ window.TRAFFIC_CONTENT =
   "site": {
     "title": "Traffic Studio",
     "tagline": "More models · fewer assumptions · Reality still not included",
-    "discussion": "https://github.com/Traffic-Studio/Discussion",
+    "discussion": "https://github.com/orgs/Traffic-Studio/discussions",
     "discussionRepo": "Traffic-Studio/Discussion",
     "discussionRepoId": "R_kgDOUZEuvg",
     "discussionCategory": "General",
@@ -72,7 +72,7 @@ window.TRAFFIC_CONTENT =
       "date": "2026-10-04",
       "app": "Intersection Layout",
       "title": "Intersection Layout Studio v1.2.0",
-      "text": "Renamed to Intersection Layout Studio, with new native `.ilstudio` project files and `.ilstpl` templates; pasted project JSON remains supported."
+      "text": "Added editable curved approaches and roundabout-mouth geometry, including improved splitter and free-right-turn integration."
     }
   ],
   "actions": [
@@ -94,7 +94,6 @@ window.TRAFFIC_CONTENT =
       "released": "2026-10-04",
       "size": "1577 kB",
       "changelog": [
-        "Renamed to Intersection Layout Studio, with new native `.ilstudio` project files and `.ilstpl` templates; pasted project JSON remains supported.",
         "Added editable curved approaches and roundabout-mouth geometry, including improved splitter and free-right-turn integration.",
         "Added roundabout circulating-flow results and a Roundabout mode in the Flow diagram.",
         "Added Mixed controls so each approach can independently use give way, stop, traffic signal or no regulation.",
@@ -108,7 +107,7 @@ window.TRAFFIC_CONTENT =
         "Documentation": "",
         "Quick start": "",
         "FAQ": "",
-        "Discussion": "https://github.com/Traffic-Studio/Discussion",
+        "Discussion": "https://github.com/orgs/Traffic-Studio/discussions/categories/intersection-layout-studio",
         "Report a bug": "https://github.com/Traffic-Studio/Intersection-Layout-Studio/issues"
       },
       "images": [
