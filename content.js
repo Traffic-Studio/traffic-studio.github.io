@@ -5,7 +5,7 @@ window.TRAFFIC_CONTENT =
     "title": "Traffic Studio",
     "tagline": "More models · fewer assumptions · Reality still not included",
     "discussion": "https://github.com/orgs/Traffic-Studio/discussions",
-    "discussionRepo": "Traffic-Studio/Discussion",
+    "discussionRepo": "Traffic-Studio/Discussions",
     "discussionRepoId": "R_kgDOUZEuvg",
     "discussionCategory": "General",
     "discussionCategoryId": "DIC_kwDOUZEuvs4DFgrV",
