@@ -14,52 +14,45 @@ window.TRAFFIC_CONTENT =
     "overviewIntro": "A family of browser-based tools for traffic analysis. Because producing a result is easy. Deciding whether to believe it is the interesting part."
   },
   "about": {
-    "_help": "The About box (the ? button, top right). Follows the Traffic Studio About dialog standard: description, License, Built with, Keyboard shortcuts, Conventions. The 'Designed by Johan Irvenå …' line is fixed by the standard and picked at random each time the box opens; it is not edited here. Footer: version, projectSchema and build are shown as 'version … · project schema v… · build …'; leave a value \"\" to hide that part. Deviation from the standard: the homepage has no build step or studio.config.json, so these values live here and must be updated by hand when you publish.",
-    "wordmarkAccent": "T",
-    "wordmark": "STUDIO",
-    "productName": "Traffic Studio",
-    "description": "Traffic Studio is the home of a family of local-first browser tools for traffic analysis. This page lists each Studio with its current release, quick start, FAQ, news and discussion. The page itself does not run any analysis; each Studio is a separate single HTML file you download and open.",
-    "license": [
-      "MIT License. The full licence text is in the LICENSE file of each repository.",
-      "The software is provided “as is”, without warranty of any kind."
-    ],
-    "builtWith": [
-      {
-        "name": "IBM Plex Sans, IBM Plex Serif",
-        "detail": "Typefaces · SIL Open Font License 1.1"
-      },
-      {
-        "name": "Azeret Mono",
-        "detail": "Typeface · SIL Open Font License 1.1"
-      },
-      {
-        "name": "Google Fonts",
-        "detail": "Font delivery · contacted when the page loads"
-      },
-      {
-        "name": "giscus",
-        "detail": "Discussion threads from GitHub Discussions · contacted when an app page is opened"
-      }
-    ],
-    "shortcuts": [
-      {
-        "keys": "Esc",
-        "action": "Close the About box, the palette or an enlarged screenshot"
-      },
-      {
-        "keys": "Tab",
-        "action": "Move between links and controls"
-      }
-    ],
-    "conventions": [
-      "Dates are written YYYY-MM-DD.",
-      "The chosen palette (warm or hot paper) is remembered in this browser only.",
-      "Each app page has its own address, e.g. index.html#intersection-layout."
-    ],
-    "sections": [],
-    "version": "1.0",
-    "projectSchema": "",
-    "build": "2026-10-04"
+  "_help": "The About box opened from the ? button in the top-right corner. It follows the Traffic Studio About dialog standard: description, License, Built with, Keyboard shortcuts and Conventions. The 'Designed by Johan Irvenå …' line is fixed by the standard and selected at random each time the box opens; it is not edited here. The footer shows version, project schema and build as 'version … · project schema v… · build …'. Leave any value as "" to hide that part. Unlike the Studio applications, the homepage has no build step or studio.config.json, so these values are maintained here and should be updated manually when publishing. Yes, manually.",
+  "wordmarkAccent": "T",
+  "wordmark": "STUDIO",
+  "productName": "Traffic Studio",
+  "description": "Traffic Studio is the home of a growing family of browser-based tools for traffic analysis, visualisation and presentation. From here you can explore each Studio, find the latest release, read the documentation and quick-start guides, check the FAQ and news, or join the discussion. The homepage itself performs no analysis; it mainly keeps everything in one place and tries to look organised while doing so. Each Studio is a separate application that you download and run in your browser.",
+  "license": [
+  "Released under the MIT License. The full licence text is included in the repository for each Studio.",
+  "The software is provided “as is”, without warranty of any kind. Confidence may vary."
+  ],
+  "builtWith": [
+  {
+  "name": "GitHub Pages",
+  "detail": "Hosting"
+  },
+  {
+  "name": "giscus",
+  "detail": "GitHub Discussions integration"
+  }
+  ],
+  "shortcuts": [
+  {
+  "keys": "Esc",
+  "action": "Close the About box, palette or enlarged screenshot"
+  },
+  {
+  "keys": "Tab",
+  "action": "Move between links and controls, as tradition demands"
+  }
+  ],
+  "conventions": [
+  "Dates are written as YYYY-MM-DD, because ambiguity is overrated.",
+  "The selected palette is stored in this browser only.",
+  "Each app page has its own address, for example index.html#intersection-layout.",
+  "Version numbers are intended to increase over time."
+  ],
+  "sections": [],
+  "version": "1.0",
+  "projectSchema": "",
+  "build": "2026-10-04"
   },
   "news": [
     {
