@@ -14,7 +14,7 @@ window.TRAFFIC_CONTENT =
     "overviewIntro": "A family of browser-based tools for traffic analysis. Because producing a result is easy. Deciding whether to believe it is the interesting part."
   },
   "about": {
-  "_help": "The About box opened from the ? button in the top-right corner. It follows the Traffic Studio About dialog standard: description, License, Built with, Keyboard shortcuts and Conventions. The 'Designed by Johan Irvenå …' line is fixed by the standard and selected at random each time the box opens; it is not edited here. The footer shows version, project schema and build as 'version … · project schema v… · build …'. Leave any value as "" to hide that part. Unlike the Studio applications, the homepage has no build step or studio.config.json, so these values are maintained here and should be updated manually when publishing. Yes, manually.",
+  "_help": "The About box opened from the ? button in the top-right corner. It follows the Traffic Studio About dialog standard: description, License, Built with, Keyboard shortcuts and Conventions. The 'Designed by Johan Irvenå …' line is fixed by the standard and selected at random each time the box opens; it is not edited here. The footer shows version, project schema and build as 'version … · project schema v… · build …'. Leave any value as \"\" to hide that part. Unlike the Studio applications, the homepage has no build step or studio.config.json, so these values are maintained here and should be updated manually when publishing. Yes, manually.",
   "wordmarkAccent": "T",
   "wordmark": "STUDIO",
   "productName": "Traffic Studio",
