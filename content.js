@@ -90,9 +90,8 @@ window.TRAFFIC_CONTENT =
         "Added editable curved approaches and roundabout-mouth geometry, including improved splitter and free-right-turn integration.",
         "Added roundabout circulating-flow results and a Roundabout mode in the Flow diagram.",
         "Added Mixed controls so each approach can independently use give way, stop, traffic signal or no regulation.",
-        "Improved markings and result overlays on curved geometry, including give-way teeth, queue bands and saturation gauges, plus clearer geometry-refusal feedback.",
-        "Replaced the built-in example with Annetorpsvägen × Elinelundsvägen, including roundabout/signal layouts, AM/PM flows and externally supplied results."
-      ],
+        "Improved markings and result overlays on curved geometry, including give-way teeth, queue bands and saturation gauges, plus clearer geometry-refusal feedback."
+          ],
       "file": "intersection-layout-studio-1.2.0.html",
       "previous": [],
       "links": {
