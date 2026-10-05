@@ -88,7 +88,7 @@ window.TRAFFIC_CONTENT =
       "num": "01",
       "name": "Intersection Layout Studio",
       "short": "Intersection Layout",
-      "domain": "Visualization · Traffic flows · Results",
+      "domain": "Geometry · Traffic flows · Results",
       "description": "Visualize intersections, traffic flows, and results.",
       "version": "v1.2.0",
       "released": "2026-10-04",
