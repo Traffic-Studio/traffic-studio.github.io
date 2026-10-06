@@ -162,7 +162,7 @@ window.TRAFFIC_CONTENT =
         "Report a bug": "https://github.com/Traffic-Studio/Network-Assignment-Studio/issues"
       },
       "images": [
-        "images/NAS-pic1.jpg",
+        "images/NAS-pic1.png",
         "images/NAS-pic2.png",
         "images/NAS-pic3.png",
         "images/NAS-pic4.png",
@@ -172,12 +172,12 @@ window.TRAFFIC_CONTENT =
       ],
       "captions": [
         "Interface",
+        "TomTom import",
+        "Assignment",
         "Roundabout",
-        "Traffic signal",
-        "Results",
-        "Compare",
-        "Traffic flows diagram",
-        "Traffic flows"
+        "Desire lines",
+        "Import OD",
+        "Select link"
       ],
       "showExample": false,
       "exampleTitle": "Example",
