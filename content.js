@@ -145,21 +145,16 @@ window.TRAFFIC_CONTENT =
       "num": "02",
       "name": "Network Assignment Studio",
       "short": "Network Assignment",
-      "domain": "Geometry · Traffic flows · Results",
-      "description": "Visualize intersections, traffic flows, and results.",
-      "version": "v1.2.0",
-      "released": "2026-10-04",
-      "size": "1577 kB",
-      "changelog": [
-        "Added editable curved approaches and roundabout-mouth geometry, including improved splitter and free-right-turn integration.",
-        "Added roundabout circulating-flow results and a Roundabout mode in the Flow diagram.",
-        "Added Mixed controls so each approach can independently use give way, stop, traffic signal or no regulation.",
-        "Improved markings and result overlays on curved geometry, including give-way teeth, queue bands and saturation gauges, plus clearer geometry-refusal feedback."
-          ],
-      "file": "network-assignment-studio-1.2.0.html",
+      "domain": "Road networks · O-D demand · Assignment · Results",
+      "description": "Build road networks, manage O-D demand, run traffic assignments and compare scenarios. A result is a starting point, not a verdict.",
+      "version": "",
+      "released": "",
+      "size": "",
+      "changelog": [],
+      "file": "",
       "previous": [],
       "links": {
-        "Download": "https://github.com/Traffic-Studio/Network-Assignment-Studio/releases/download/v1.2.0/network-assignment-studio-1.2.0.html",
+        "Download": "",
         "Documentation": "",
         "Quick start": "",
         "FAQ": "",
@@ -187,21 +182,31 @@ window.TRAFFIC_CONTENT =
       "showExample": false,
       "exampleTitle": "Example",
       "example": [
-        "open in any browser",
-        "data stays on your machine"
+        "open in a Chromium-based browser",
+        "build a network, assign demand and inspect the result"
       ],
       "exampleImages": [],
       "exampleCaptions": [],
       "quickStart": [
-        "Download the single HTML file.",
-        "Open it in a browser.",
-        "Create your favourite intersection.",
-        "Fill in with all information you have about it."
+        "Download the single HTML file when a release is available.",
+        "Open it in a Chromium-based browser.",
+        "Draw a road network and define zones.",
+        "Create or import an O-D matrix and choose assignment settings.",
+        "Run an assignment, inspect the results and compare scenarios.",
+        "Save the project to continue your work later."
       ],
       "faq": [
         {
           "q": "Is this thing working?",
-          "a": "WYSIWYG"
+          "a": "NAS runs traffic assignments and provides tools for calibration and comparison. Check the network, demand and assumptions before deciding how much to trust the result."
+        },
+        {
+          "q": "Which assignment methods are available?",
+          "a": "All-or-nothing (AON), Incremental and UE/MSA assignment."
+        },
+        {
+          "q": "Does it need an internet connection?",
+          "a": "The downloaded application runs in your browser. Background maps, routing and TomTom features use optional online services; their availability depends on the provider and any required access credentials."
         }
       ]
     }
