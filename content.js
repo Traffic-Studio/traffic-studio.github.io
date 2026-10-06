@@ -103,13 +103,77 @@ window.TRAFFIC_CONTENT =
         "Report a bug": "https://github.com/Traffic-Studio/Intersection-Layout-Studio/issues"
       },
       "images": [
-        "images/IS-pic1.jpg",
-        "images/IS-pic2.png",
-        "images/IS-pic3.png",
-        "images/IS-pic4.png",
-        "images/IS-pic5.png",
-        "images/IS-pic6.png",
-        "images/IS-pic7.png"
+        "images/ILS-pic1.jpg",
+        "images/ILS-pic2.png",
+        "images/ILS-pic3.png",
+        "images/ILS-pic4.png",
+        "images/ILS-pic5.png",
+        "images/ILS-pic6.png",
+        "images/ILS-pic7.png"
+      ],
+      "captions": [
+        "Interface",
+        "Roundabout",
+        "Traffic signal",
+        "Results",
+        "Compare",
+        "Traffic flows diagram",
+        "Traffic flows"
+      ],
+      "showExample": false,
+      "exampleTitle": "Example",
+      "example": [
+        "open in any browser",
+        "data stays on your machine"
+      ],
+      "exampleImages": [],
+      "exampleCaptions": [],
+      "quickStart": [
+        "Download the single HTML file.",
+        "Open it in a browser.",
+        "Create your favourite intersection.",
+        "Fill in with all information you have about it."
+      ],
+      "faq": [
+        {
+          "q": "Is this thing working?",
+          "a": "WYSIWYG"
+        }
+      ]
+    },
+    {
+      "num": "02",
+      "name": "Network Assignment Studio",
+      "short": "Network Assignment",
+      "domain": "Geometry · Traffic flows · Results",
+      "description": "Visualize intersections, traffic flows, and results.",
+      "version": "v1.2.0",
+      "released": "2026-10-04",
+      "size": "1577 kB",
+      "changelog": [
+        "Added editable curved approaches and roundabout-mouth geometry, including improved splitter and free-right-turn integration.",
+        "Added roundabout circulating-flow results and a Roundabout mode in the Flow diagram.",
+        "Added Mixed controls so each approach can independently use give way, stop, traffic signal or no regulation.",
+        "Improved markings and result overlays on curved geometry, including give-way teeth, queue bands and saturation gauges, plus clearer geometry-refusal feedback."
+          ],
+      "file": "network-assignment-studio-1.2.0.html",
+      "previous": [],
+      "links": {
+        "Download": "https://github.com/Traffic-Studio/Network-Assignment-Studio/releases/download/v1.2.0/network-assignment-studio-1.2.0.html",
+        "Documentation": "",
+        "Quick start": "",
+        "FAQ": "",
+        "Discussion": "https://github.com/orgs/Traffic-Studio/discussions/categories/network-assignment-studio",
+        "Report a bug": "https://github.com/Traffic-Studio/Network-Assignment-Studio/issues"
+      },
+      "images": [
+        "images/NAS-pic1.jpg",
+        "images/NAS-pic2.png",
+        "images/NAS-pic3.png",
+        "images/NAS-pic4.png",
+        "images/NAS-pic5.png",
+        "images/NAS-pic6.png",
+        "images/NAS-pic7.png"
       ],
       "captions": [
         "Interface",
