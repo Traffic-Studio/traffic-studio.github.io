@@ -145,7 +145,7 @@ window.TRAFFIC_CONTENT =
       "num": "02",
       "name": "Network Assignment Studio",
       "short": "Network Assignment",
-      "domain": "Road networks · O-D demand · Assignment · Results",
+      "domain": "Road networks · O-D demand · Assignment",
       "description": "Build road networks, manage O-D demand, run traffic assignments and compare scenarios. A result is a starting point, not a verdict.",
       "version": "",
       "released": "",
