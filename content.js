@@ -63,15 +63,15 @@ window.TRAFFIC_CONTENT =
     },
     {
       "date": "2026-10-04",
-      "app": "",
-      "title": "Site launched",
-      "text": "The Traffic Studio homepage is now up and running — apparently we have a website now."
-    },
-    {
-      "date": "2026-10-04",
       "app": "Intersection Layout",
       "title": "Intersection Layout Studio v1.2.0",
       "text": "Added editable curved approaches and roundabout-mouth geometry, including improved splitter and free-right-turn integration."
+    },
+    {
+      "date": "2026-10-04",
+      "app": "",
+      "title": "Site launched",
+      "text": "The Traffic Studio homepage is now up and running — apparently we have a website now."
     }
   ],
   "actions": [
@@ -161,8 +161,6 @@ window.TRAFFIC_CONTENT =
         "Download one HTML file and open it directly in a Chromium-based browser. Core startup works offline; basemaps, routing and TomTom services are optional and require explicit use.",
         "Explore model Select Link results and imported TomTom results, with separate request/matched geometry, volume display modes, From/To/Via Trip Statistics filters, desire-line labels and aggregate CSV export.",
         "Use Open, Save and Save As, movable Select Link panels, and saved TomTom date/time drafts. Project schema remains 10 and project file version remains 5.",
-        "Warm paper and Hot paper now share the Traffic Studio palette standard, with a grouped palette editor and an updated About dialog. Available basemaps are OpenFreeMap Light/Dark/Fiord, Esri Satellite/Topographic and None; standalone OSM Standard is removed.",
-        "Public downloads now include release notes and SHA-256 checksums, with bug reports in the public NAS repository and feature requests in Traffic Studio Discussions."
       ],
       "file": "network-assignment-studio-2.20.1.html",
       "previous": [],
